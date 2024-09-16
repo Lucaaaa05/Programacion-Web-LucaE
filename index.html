@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practicasa</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header id="header">
+        <div class="header-container">
+            <img src="imagenes/Logo Practicasa.png" alt="Logo Practicasa" class="logo" />
+            <h1 id="main-title">Practicasa</h1>
+            <nav id="nav">
+                <ul class="nav-list">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#masvendidos-ofertas">Ofertas</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-icons"></div>
+            <a href="#" class="icon-link" id="favorites">
+                <img src="imagenes/favoritos.webp" alt="Favoritos" class="icon-img"/>
+            </a>
+            <a href="#" class="icon-link" id="cart">
+                <img src="imagenes/carrito.png" alt="Carrito" class="icon-img"/>
+            </a>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Buscar productos..." class="search-bar" />
+            <button class="search-button">Buscar</button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section id="inicio" class="section section-inicio">
+            <h2>EncontrÃ¡ lo que buscas</h2>
+            <table class="product-table" border="1">
+                <thead class="table-head">
+                    <tr>
+                        <th>Bazar</th>
+                        <th>Deco</th>
+                        <th>OrganizaciÃ³n</th>
+                        <th>Textil</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr>
+                        <td>
+                            <img src="imagenes/BazarPract.jpeg" alt="productos de bazar" height="100" class="product-image" />
+                        </td>
+                        <td>
+                            <img src="imagenes/DecoPract.jpg" alt="productos de deco" height="100" class="product-image" />
+                        </td>
+                        <td>
+                            <img src="imagenes/OrganizacionPract.jpg" alt="productos de organizaciÃ³n" height="100" class="product-image" />
+                        </td>
+                        <td>
+                            <img src="imagenes/TextilPract.jpg" alt="productos textiles" height="100" class="product-image" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="productos" class="section section-productos">
+            <h2 id="product-title">Nuevos Ingresos ðŸ”¥</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="imagenes/moldeCupCakePract.png" alt="Molde para cupcake" class="product-image">
+                    <h3>Molde para Cupcake</h3>
+                    <span class="product-price">$7.200</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/cepillodebaÃ±oPract.png" alt="Cepillo de baÃ±o silicona" class="product-image">
+                    <h3>Cepillo de BaÃ±o</h3>
+                    <span class="product-price">$6.000</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/contenedoresPract.png" alt="Contenedores plÃ¡sticos" class="product-image">
+                    <h3>Contenedores PlÃ¡sticos</h3>
+                    <span class="product-price">$5.000</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/BolsacalientePract.png" alt="Bolsa de agua caliente" class="product-image">
+                    <h3>Bolsa de Agua Caliente</h3>
+                    <span class="product-price">$5.500</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/CocinaSecadorPract.png" alt="Separedor para heladera" class="product-image">
+                    <h3>Separador para heladera</h3>
+                    <span class="product-price">$4.000</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/DecoBaÃ±eraPract.png" alt="Decoracion de baÃ±era" class="product-image">
+                    <h3>DecoraciÃ³n para baÃ±o estilo baÃ±era</h3>
+                    <span class="product-price">$1.200</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/moldeSiliconaPract.png" alt="Molde de silicona" class="product-image">
+                    <h3>Bowl para horno de silicona flexible</h3>
+                    <span class="product-price">$5.500</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/mateTererePract.png" alt="Mate para terere" class="product-image">
+                    <h3>Mate para tererÃ©</h3>
+                    <span class="product-price">$7.000</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/hollaHutsonPract.png" alt="Holla Hutson" class="product-image">
+                    <h3>Holla Hutson antiadherente</h3>
+                    <span class="product-price">$42.000</span>
+                </div>
+                <div class="product-card">
+                    <img src="imagenes/SartengrandeHustonPract.png" alt="Sarten Hutson" class="product-image">
+                    <h3>Sarten grande Hutson</h3>
+                    <span class="product-price">$30.000</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="masvendidos-ofertas" class="section section-masvendidos-ofertas">
+            <h2>Ofertas destacadas</h2>
+            <ul class="offer-list">
+                <li><button type="button" class="best-sellers-button">MÃ¡s Vendidos</button></li>
+                <li><button type="button" class="offer-button">Ofertas</button></li>
+            </ul>
+        </section>
+
+        <section id="nosotros" class="section section-nosotros">
+            <h2>Sobre Nosotros</h2>
+            <p class="about-text">
+                Somos una empresa familiar que piensa en hacer de cada espacio de tu hogar, un lugar cÃ³modo, prÃ¡ctico y bello. Sencillamente, llegamos para hacer tu vida mÃ¡s prÃ¡ctica ðŸ˜‰
+            </p>
+            <h3>DÃ©janos tu mensaje</h3>
+            <form id="contact-form">
+                <input type="text" placeholder="Nombre *" id="nombre" name="nombre" required class="form-input" />
+                <input type="text" placeholder="Apellido *" id="apellido" name="apellido" required class="form-input" />
+                <input type="email" placeholder="Correo Electronico *" id="correo-electronico" name="correo-electronico" required class="form-input" />
+                <textarea id="mensaje" placeholder="Mensaje *" name="mensaje" rows="7" cols="30" required class="form-textarea"></textarea>
+                <button type="submit" class="form-button">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="footer-container">
+        <div>
+            <h2>ContÃ¡ctanos</h2>
+        <p>Lavalle 994, NogoyÃ¡, Entre RÃ­os</p>
+        <h3>Redes</h3>
+        </div>
+            <div class="social-media">
+                <a href="https://www.facebook.com/profile.php?id=100091277076331&mibextid=JRoKGi" target="_blank" class="social-link">Facebook</a> | 
+                <a href="https://www.instagram.com/practicasa.nogoya?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-link">Instagram</a> | 
+                <a href="https://api.whatsapp.com/message/JAAXA3F5ONPZJ1?autoload=1&app_absent=0" target="_blank" class="social-link">WhatsApp</a>
+            </div>
+            <p>Â© 2024 Practicasa. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
