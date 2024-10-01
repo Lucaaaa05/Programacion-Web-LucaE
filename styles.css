@@ -349,15 +349,20 @@ footer {
 
 @media (max-width: 480px) {
     header {
+        width: 500px;
+        height: 200px;
         padding: 10px 0;
     }
 
+    .search-container {
+        top: auto;
+    }
     #main-title {
         font-size: 1.5rem;
     }
 
     .nav-list {
-        gap: 15px;
+        display: none;
     }
 
     .icon-img {
