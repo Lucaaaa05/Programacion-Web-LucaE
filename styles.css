@@ -378,6 +378,8 @@ footer {
 
 @media (max-width: 480px) {
     header {
+        width: 500px;
+        height: 200px;
         padding: 10px 0;
     }
 
