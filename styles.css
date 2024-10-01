@@ -317,9 +317,18 @@ footer {
         text-align: center;
     }
 
+    .logo {
+        height: 60px;
+    }
+
+    #main-title {
+        font-size: 1.8rem;
+        margin-top: 10px;
+    }
+
     .nav-list {
         flex-direction: column;
-        gap: 10px;
+        gap: 20px;
     }
 
     .search-container {
@@ -328,22 +337,34 @@ footer {
         gap: 10px;
     }
 
-    .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    .search-bar {
+        width: 100%;
     }
 
-    .section-nosotros {
-        text-align: center;
-        background-color:#333;
+    .header-icons {
+        justify-content: center;
+        margin-top: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .product-grid {
-        grid-template-columns: 1fr;
+    header {
+        padding: 10px 0;
+    }
+
+    #main-title {
+        font-size: 1.5rem;
     }
 
     .nav-list {
-        gap: 5px;
+        gap: 15px;
+    }
+
+    .icon-img {
+        height: 20px;
+    }
+
+    .icon-text {
+        font-size: 14px;
     }
 }
