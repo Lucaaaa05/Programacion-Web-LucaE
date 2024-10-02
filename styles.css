@@ -317,6 +317,18 @@ footer {
         text-align: center;
     }
 
+    .main-product-image {
+        display: none;
+    }
+
+    header {
+        height: 185px; 
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
     .logo-title-container {
         display: flex;
         justify-content: center;
@@ -337,7 +349,7 @@ footer {
     }
 
     .search-container {
-        margin-top: 20px;
+        margin-top: 10px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -347,19 +359,51 @@ footer {
     }
 
     .search-bar {
+        display: block;
+        margin-top: 10px;
         flex-grow: 1;
         width: 70%;
     }
 
+    .search-button {
+        display: block;
+        margin-top: 10px;
+        flex-grow: 1;
+        height: 40px;
+    }
+
     .header-icons {
-        justify-content: center;
-        margin-left: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        gap: 15px;
+    }
+
+    .table-head-items {
+        display: flex;
+        flex-direction: column; 
+        gap: 10px;
+        width: 100%;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 412px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-product-image {
+        display: none;
+    }
+
     header {
-        padding: 10px 0;
+        height: 185px; 
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .logo-title-container {
@@ -369,12 +413,12 @@ footer {
     }
 
     .logo {
-        height: 50px;
-        margin-right: 5px;
+        height: 60px;
+        margin-right: 10px;
     }
 
     #main-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .nav-list {
@@ -382,7 +426,7 @@ footer {
     }
 
     .search-container {
-        margin-top: 20px;
+        margin-top: 10px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -392,19 +436,31 @@ footer {
     }
 
     .search-bar {
+        display: block;
+        margin-top: 10px;
         flex-grow: 1;
-        width: 65%;
+        width: 70%;
+    }
+
+    .search-button {
+        display: block;
+        margin-top: 10px;
+        flex-grow: 1;
+        height: 40px;
     }
 
     .header-icons {
-        justify-content: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        gap: 15px;
     }
 
-    .icon-img {
-        height: 20px;
-    }
-
-    .icon-text {
-        font-size: 14px;
+    .table-head-items {
+        display: flex;
+        flex-direction: column; 
+        gap: 10px;
+        width: auto;
     }
 }
