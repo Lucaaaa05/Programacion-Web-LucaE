@@ -393,6 +393,15 @@ footer {
         gap: 10px;
         width: 100%;
     }
+
+#map-frame {
+    height: 200px;
+    min-height: 100px;
+    width: 100%;
+    display:center;
+    padding: 0%;
+  }
+
 }
 
 @media (max-width: 412px) {
