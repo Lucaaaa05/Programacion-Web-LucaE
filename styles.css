@@ -311,6 +311,13 @@ footer {
     color: #ff5722;
 }
 
+#map-frame {
+    height: 400px;
+    width: 100%;
+    display: center;
+    padding: 0px;
+  }
+
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -386,6 +393,15 @@ footer {
         gap: 10px;
         width: 100%;
     }
+
+#map-frame {
+    height: 200px;
+    min-height: 100px;
+    width: 100%;
+    display:center;
+    padding: 0%;
+  }
+
 }
 
 @media (max-width: 412px) {
@@ -463,4 +479,12 @@ footer {
         gap: 10px;
         width: auto;
     }
+
+    #map-frame {
+        height: 200px;
+        min-height: 100px;
+        width: 100%;
+        display:center;
+        padding: 0%;
+      }
 }
