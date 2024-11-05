@@ -317,87 +317,52 @@ footer {
         text-align: center;
     }
 
-    .logo-title-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
     .logo {
         height: 60px;
-        margin-right: 10px;
     }
 
     #main-title {
         font-size: 1.8rem;
+        margin-top: 10px;
     }
 
     .nav-list {
-        display: none;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .search-container {
         margin-top: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
         gap: 10px;
-        width: 100%;
     }
 
     .search-bar {
-        flex-grow: 1;
-        width: 70%;
+        width: 100%;
     }
 
     .header-icons {
         justify-content: center;
-        margin-left: 10px;
+        margin-top: 10px;
     }
 }
 
 @media (max-width: 480px) {
     header {
+        width: 500px;
+        height: 200px;
         padding: 10px 0;
     }
 
-    .logo-title-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .search-container {
+        top: auto;
     }
-
-    .logo {
-        height: 50px;
-        margin-right: 5px;
-    }
-
     #main-title {
         font-size: 1.5rem;
     }
 
     .nav-list {
         display: none;
-    }
-
-    .search-container {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .search-bar {
-        flex-grow: 1;
-        width: 65%;
-    }
-
-    .header-icons {
-        justify-content: center;
     }
 
     .icon-img {
