@@ -317,18 +317,9 @@ footer {
         text-align: center;
     }
 
-    .logo {
-        height: 60px;
-    }
-
-    #main-title {
-        font-size: 1.8rem;
-        margin-top: 10px;
-    }
-
     .nav-list {
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
     }
 
     .search-container {
@@ -337,34 +328,22 @@ footer {
         gap: 10px;
     }
 
-    .search-bar {
-        width: 100%;
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
-    .header-icons {
-        justify-content: center;
-        margin-top: 10px;
+    .section-nosotros {
+        text-align: center;
+        background-color:#333;
     }
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 10px 0;
-    }
-
-    #main-title {
-        font-size: 1.5rem;
+    .product-grid {
+        grid-template-columns: 1fr;
     }
 
     .nav-list {
-        gap: 15px;
-    }
-
-    .icon-img {
-        height: 20px;
-    }
-
-    .icon-text {
-        font-size: 14px;
+        gap: 5px;
     }
 }
