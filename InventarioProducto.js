@@ -15,19 +15,19 @@ class InventarioProducto {
 
     buscarProducto() {
         let barraBusqueda;
-    
+        
         do {
             barraBusqueda = prompt("Ingrese el producto a buscar (escriba 'ESC' para terminar)").toUpperCase();
-    
+        
             if (barraBusqueda === "ESC") {
                 console.log("Saliendo..."); // por si el usuario no quiere buscar nada
                 break;
             }
-    
+        
             let resultados = this.productos.filter(producto =>
-                producto.nombreProducto.includes(barraBusqueda) // busca dentro del array
+                producto.nombreProducto.toUpperCase().includes(barraBusqueda)
             );
-    
+        
             if (resultados.length > 0) {
                 console.log("Productos encontrados:");
                 resultados.forEach(producto => {
@@ -37,7 +37,7 @@ class InventarioProducto {
                 console.log("Producto no encontrado.");
             }
         } while (true);
-    }
+    }    
     
     mostrarProducto() {
         if (this.productos.length > 0) {
