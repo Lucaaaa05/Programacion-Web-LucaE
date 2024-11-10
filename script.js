@@ -27,7 +27,7 @@ function validarFormulario() {
     } while (!apellidoUsuario);
 
     // validar email
-    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/; // https://www.coderbox.net/blog/validar-email-usando-javascript-y-expresiones-regulares/
+    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
     do {
         emailUsuario = prompt("Introduce tu email:");
         if (!emailUsuario) {
@@ -56,7 +56,7 @@ function validarFormulario() {
     };
 }
 
-validarFormulario();
+const datosFormulario = validarFormulario();
 
 // Mostrar mensaje con datos del usuario
 alert(`Se llama: ${datosFormulario.nombre} ${datosFormulario.apellido}, su mensaje es: ${datosFormulario.mensaje}`);
