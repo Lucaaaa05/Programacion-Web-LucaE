@@ -60,3 +60,9 @@ const datosFormulario = validarFormulario();
 
 // Mostrar mensaje con datos del usuario
 alert(`Se llama: ${datosFormulario.nombre} ${datosFormulario.apellido}, su mensaje es: ${datosFormulario.mensaje}`);
+
+function mensajePersonalizado(mensajePer) {
+    alert(`Mensaje: ${mensajePer}`);
+}
+
+mensajePersonalizado("Bienvenido a Practicasa.")
