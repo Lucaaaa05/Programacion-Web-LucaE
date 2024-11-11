@@ -15,9 +15,17 @@ class InventarioProducto {
 
     buscarProducto() {
         let barraBusqueda;
+        let input;
         
         do {
-            barraBusqueda = prompt("Ingrese el producto a buscar (escriba 'ESC' para terminar)").toUpperCase();
+            input = prompt("Ingrese el producto a buscar (escriba 'ESC' para terminar)");
+
+            if (input === null) {
+                console.log("Operación cancelada por el usuario.");
+                break;
+            }
+
+            barraBusqueda = input.toUpperCase();
         
             if (barraBusqueda === "ESC") {
                 console.log("Saliendo..."); // por si el usuario no quiere buscar nada
