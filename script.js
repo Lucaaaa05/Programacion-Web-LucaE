@@ -1,68 +1,154 @@
 import InventarioProducto from "./InventarioProducto.js";
+import Producto from "./Producto.js";
 
-const miInventario = new InventarioProducto();
-miInventario.agregarProducto() // agrega un producto
-miInventario.buscarProducto() // busca un producto
-miInventario.mostrarProducto(); // muestra los productos
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-
-// validar el formulario
-function validarFormulario() {
-    let nombreUsuario, apellidoUsuario, emailUsuario, mensajeUsuario;
-
-    // validar nombre
-    do {
-        nombreUsuario = prompt("Introduce tu nombre:");
-        if (!nombreUsuario) {
-            alert("El nombre es obligatorio");
-        }
-    } while (!nombreUsuario);
-
-    // validar apellido
-    do {
-        apellidoUsuario = prompt("Introduce tu apellido:");
-        if (!apellidoUsuario) {
-            alert("El apellido es obligatorio");
-        }
-    } while (!apellidoUsuario);
-
-    // validar email
-    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-    do {
-        emailUsuario = prompt("Introduce tu email:");
-        if (!emailUsuario) {
-            alert("El email es obligatorio");
-        } else if (!validEmail.test(emailUsuario)) {
-            alert("El email no tiene un formato válido");
-            emailUsuario = null; // reiniciar la entrada para el siguiente intento
-        }
-    } while (!emailUsuario);
-
-    // Validar mensaje
-    do {
-        mensajeUsuario = prompt("Introduce el mensaje:");
-        if (!mensajeUsuario) {
-            alert("El mensaje es obligatorio");
-        }
-    } while (!mensajeUsuario);
-
-    // retornar un objeto 
-    return {
-        nombre: nombreUsuario,
-        apellido: apellidoUsuario,
-        email: emailUsuario,
-        mensaje: mensajeUsuario,
-        mensajeExito: "Formulario enviado con éxito."
-    };
+function guardarCarrito() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-const datosFormulario = validarFormulario();
+function agregarAlCarrito(nombreProducto, precioProducto) {
+    if (!nombreProducto || isNaN(precioProducto)) {
+        console.error("Intento de agregar producto inválido: ", { nombreProducto, precioProducto });
+        return;
+    }
 
-// Mostrar mensaje con datos del usuario
-alert(`Se llama: ${datosFormulario.nombre} ${datosFormulario.apellido}, su mensaje es: ${datosFormulario.mensaje}`);
+    const productoExistente = carrito.find((producto) => producto.nombre === nombreProducto);
 
-function mensajePersonalizado(mensajePer) {
-    alert(`Mensaje: ${mensajePer}`);
+    if (productoExistente) {
+        productoExistente.cantidad += 1;
+    } else {
+        carrito.push({ nombre: nombreProducto, precio: Number(precioProducto), cantidad: 1 });
+    }
+
+    guardarCarrito();
+    actualizarCarrito();
 }
 
-mensajePersonalizado("Bienvenido a Practicasa.")
+function eliminarDelCarrito(nombreProducto) {
+    carrito = carrito.filter((producto) => producto.nombre !== nombreProducto);
+    guardarCarrito();
+    actualizarCarrito();
+}
+
+function incrementarCantidad(nombreProducto) {
+    const producto = carrito.find((producto) => producto.nombre === nombreProducto);
+    if (producto) {
+        producto.cantidad += 1;
+        guardarCarrito();
+        actualizarCarrito();
+    }
+}
+
+function decrementarCantidad(nombreProducto) {
+    const producto = carrito.find((producto) => producto.nombre === nombreProducto);
+    if (producto && producto.cantidad > 1) {
+        producto.cantidad -= 1;
+    } else if (producto && producto.cantidad === 1) {
+        eliminarDelCarrito(nombreProducto);
+        return;
+    }
+    guardarCarrito();
+    actualizarCarrito();
+}
+
+function calcularTotal() {
+    return carrito.reduce((total, producto) => {
+        if (!producto.nombre || isNaN(producto.precio) || isNaN(producto.cantidad)) {
+            console.error("Producto con datos inválidos en carrito: ", producto);
+            return total;
+        }
+        return total + producto.precio * producto.cantidad;
+    }, 0).toFixed(2);
+}
+
+function actualizarCarrito() {
+    const carritoContainer = document.querySelector("#carrito .cart-items");
+
+    if (!carritoContainer) {
+        console.error("Contenedor del carrito no encontrado.");
+        return;
+    }
+
+    carritoContainer.innerHTML = "";
+
+    if (carrito.length === 0) {
+        carritoContainer.innerHTML = "<li>El carrito está vacío.</li>";
+    } else {
+        carrito.forEach((producto) => {
+            if (!producto.nombre || isNaN(producto.precio) || isNaN(producto.cantidad)) {
+                console.error("Producto inválido detectado en carrito: ", producto);
+                return;
+            }
+
+            const productoDiv = document.createElement("li");
+            productoDiv.classList.add("carrito-item");
+            productoDiv.innerHTML = `
+                <span class="carrito-nombre">${producto.nombre}</span>
+                <span class="carrito-precio">$${producto.precio.toFixed(2)}</span>
+                <span class="carrito-cantidad">
+                    <button class="btn-decrementar" data-nombre="${producto.nombre}">-</button>
+                    ${producto.cantidad}
+                    <button class="btn-incrementar" data-nombre="${producto.nombre}">+</button>
+                </span>
+                <button class="btn-eliminar" data-nombre="${producto.nombre}">Eliminar</button>
+            `;
+            carritoContainer.appendChild(productoDiv);
+        });
+    }
+
+    document.querySelectorAll(".btn-decrementar").forEach((button) => {
+        button.addEventListener("click", () => decrementarCantidad(button.dataset.nombre));
+    });
+
+    document.querySelectorAll(".btn-incrementar").forEach((button) => {
+        button.addEventListener("click", () => incrementarCantidad(button.dataset.nombre));
+    });
+
+    document.querySelectorAll(".btn-eliminar").forEach((button) => {
+        button.addEventListener("click", () => eliminarDelCarrito(button.dataset.nombre));
+    });
+
+    const totalContainer = document.querySelector("#carrito-total span");
+    if (totalContainer) {
+        const total = calcularTotal();
+        totalContainer.textContent = `$${total}`;
+    }
+}
+
+function inicializarBotones() {
+    const botonesAgregar = document.querySelectorAll(".add-to-cart-button");
+
+    if (botonesAgregar.length === 0) {
+        console.warn("No se encontraron botones para agregar productos.");
+        return;
+    }
+
+    botonesAgregar.forEach((boton) => {
+        boton.addEventListener("click", () => {
+            const nombreProducto = boton.dataset.nombre;
+            const precioProducto = parseFloat(boton.dataset.precio);
+
+            if (!nombreProducto || isNaN(precioProducto)) {
+                console.error("Datos inválidos en el botón de agregar: ", {
+                    nombre: nombreProducto,
+                    precio: precioProducto,
+                });
+                return;
+            }
+            agregarAlCarrito(nombreProducto, precioProducto);
+        });
+    });
+}
+
+
+
+document.getElementById("cart").addEventListener("click", () => {
+    const carrito = document.getElementById("carrito");
+    carrito.style.display = carrito.style.display === "none" ? "block" : "none";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    actualizarCarrito();
+    inicializarBotones();
+});
