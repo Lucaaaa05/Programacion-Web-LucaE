@@ -250,30 +250,52 @@ text-align: center;
 }
 
 .section-nosotros {
-    background-color: #333;
+    background-color: #222;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 50px 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.section-nosotros h2 {
+    font-size: 2.5rem;
+    color: #ff5722;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 .section-nosotros .about-text {
     max-width: 800px;
-    margin: 20px 0;
+    margin: 20px auto;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #ddd;
+    text-align: center;
+}
+
+.section-nosotros h3 {
+    font-size: 2rem;
+    color: #ff5722;
+    margin: 30px 0 20px;
+    text-transform: capitalize;
 }
 
 #contact-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    background-color:#2927277e;
-    font-family: 'Roboto', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #333;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: left;
 }
 
 #mensaje {
@@ -283,57 +305,122 @@ text-align: center;
 .form-input, .form-textarea {
     margin-bottom: 20px;
     padding: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
     border-radius: 8px;
     width: 100%;
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #292929;
+    color: #fff;
+    transition: all 0.3s ease;
 }
 
 .form-input:focus, .form-textarea:focus {
     border-color: #ff5722;
-    box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+    box-shadow: 0 0 8px rgba(255, 87, 34, 0.6);
     outline: none;
 }
 
 .form-button {
     padding: 15px;
-    background-color: #008cba;
+    width: 100%;
+    max-width: 300px;
+    background-color: #ff5722;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
 }
 
 .form-button:hover {
-    background-color: #007bb5; 
+    background-color: #e64a19;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 
 #contacto {
-    background-color: #333;
+    background-color: #222;
     color: #fff;
-    text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    text-align: left;
+}
+
+.footer-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ff5722;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer-container p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.map-div {
+    flex: 1 1 300px;
+    max-width: 500px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.social-media {
+    flex: 1 1 200px;
+}
+
+.social-media h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ff5722;
 }
 
 .social-link {
     color: #fff;
-    margin: 0 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .social-link:hover {
-    color: #ff5722;
+    background-color: #ff5722;
+    color: #fff;
 }
 
 #map-frame {
-    height: 400px;
+    height: 300px;
     width: 100%;
-    display: center;
-    padding: 0px;
-  }
+    border: 0;
+}
+
+.footer-container p:last-child {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
 
   .carrusel-section {
     display: flex;
@@ -368,9 +455,10 @@ text-align: center;
 
 .cart-container {
     position: fixed;
-    top: 80px;
+    top: 100px;
     right: 20px;
     width: 350px;
+    max-width: 90%;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -378,6 +466,7 @@ text-align: center;
     padding: 20px;
     display: none;
     z-index: 1000;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .cart-container.visible {
@@ -385,7 +474,7 @@ text-align: center;
     opacity: 1;
     transform: translateY(0);
 }
-  
+
 .cart-container h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -393,7 +482,7 @@ text-align: center;
     border-bottom: 2px solid #ddd;
     padding-bottom: 5px;
 }
-  
+
 .cart-items {
     list-style: none;
     padding: 0;
@@ -401,7 +490,7 @@ text-align: center;
     max-height: 200px;
     overflow-y: auto;
 }
-  
+
 .cart-items li {
     display: flex;
     justify-content: space-between;
@@ -424,7 +513,7 @@ text-align: center;
     font-weight: bold;
     color: #ff5722;
 }
-  
+
 .cart-total {
     margin-top: 20px;
     font-size: 1.2rem;
@@ -432,7 +521,7 @@ text-align: center;
     text-align: right;
     color: #333;
 }
-  
+
 .checkout-button {
     margin-top: 15px;
     width: 100%;
@@ -452,8 +541,8 @@ text-align: center;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-  
-  .add-to-cart-button {
+
+.add-to-cart-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -478,6 +567,63 @@ text-align: center;
 .add-to-cart-button:active {
     transform: scale(0.95);
 }
+
+.notificaciones {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notificacion {
+    background-color: #fff;
+    color: #333;
+    padding: 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeIn 0.5s forwards, fadeOut 0.5s 3.5s forwards;
+    word-wrap: break-word;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.notificacion.success {
+    border-color: #4caf50;
+    background-color: #e8f5e9;
+    color: #388e3c;
+}
+
+.notificacion.error {
+    border-color: #f44336;
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.notificacion.info {
+    border-color: #2196f3;
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
 
 @media (max-width: 1270px) {
     .header-container {
@@ -698,17 +844,66 @@ text-align: center;
         width: 100%;
     }
 
-#map-frame {
-    height: 200px;
-    min-height: 100px;
-    width: 100%;
-    display:center;
-    padding: 0%;
-  }
+    .section-nosotros h2 {
+        font-size: 2rem;
+    }
 
+    .section-nosotros .about-text {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    #contact-form {
+        padding: 20px;
+    }
+
+    .form-button {
+        max-width: 100%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .map-div {
+        max-width: 100%;
+    }
+
+    .social-link {
+        display: inline-block;
+        margin: 5px;
+    }
 }
 
+.cart-container {
+    top: 80px;
+    right: 10px;
+    left: 10px;
+    max-width: 100%;
+}
 
+.checkout-button {
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.cart-items {
+    max-height: 150px;
+}
+
+.notificaciones {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: unset;
+}
+
+.notificacion {
+    font-size: 14px;
+    padding: 10px 15px;
+}
 
 @media (max-width: 412px) {
     .header-container {
@@ -786,11 +981,62 @@ text-align: center;
         width: auto;
     }
 
+    .section-nosotros h2 {
+        font-size: 1.8rem;
+    }
+
+    .section-nosotros h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-input, .form-textarea {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+
+    .form-button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
     #map-frame {
         height: 200px;
-        min-height: 100px;
-        width: 100%;
-        display:center;
-        padding: 0%;
-      }
+    }
+
+    .footer-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .social-media h3 {
+        font-size: 1.2rem;
+    }
+
+    .social-link {
+        font-size: 0.9rem;
+    }
+    
+    .cart-container {
+        top: 70px;
+        padding: 15px;
+    }
+
+    .cart-items {
+        max-height: 120px;
+    }
+
+    .checkout-button {
+        font-size: 0.9rem;
+    }
+
+    .notificaciones {
+        top: 5px;
+        right: 5px;
+        left: 5px;
+    }
+
+    .notificacion {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
 }
