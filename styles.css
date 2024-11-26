@@ -379,6 +379,12 @@ text-align: center;
     display: none;
     z-index: 1000;
 }
+
+.cart-container.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
   
 .cart-container h3 {
     font-size: 1.5rem;
