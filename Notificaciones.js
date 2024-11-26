@@ -28,14 +28,14 @@ class Notificaciones {
             const item = document.createElement("li");
             item.classList.add("list-group-item");
             item.innerHTML = `
-                ${producto.nombre} - ${producto.cantidad} x $${producto.precio.toFixed(2)} = $${(producto.precio * producto.cantidad).toFixed(2)}
-            `;
+    ${producto.nombre} - ${producto.cantidad} x ${this.formateador.format(producto.precio)} = ${this.formateador.format(producto.precio * producto.cantidad)}
+`;
             detalleCompra.appendChild(item);
         });
     
         const totalItem = document.createElement("li");
         totalItem.classList.add("list-group-item", "list-group-item-primary", "fw-bold");
-        totalItem.textContent = `Total: $${this.carrito.calcularTotal()}`;
+        totalItem.textContent = `Total: ${this.carrito.calcularTotal()}`;
         detalleCompra.appendChild(totalItem);
     }
     
