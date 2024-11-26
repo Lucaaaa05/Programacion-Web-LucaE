@@ -1,9 +1,9 @@
-import InventarioProducto from "./InventarioProducto.js";
-import Producto from "./Producto.js";
+import Notificaciones from "./Notificaciones.js";
 
 class Carrito {
-    constructor(){
+    constructor() {
         this.productos = JSON.parse(localStorage.getItem("carrito")) || [];
+        this.notis = new Notificaciones(this);
     }
 
 guardarCarrito() {
@@ -26,7 +26,7 @@ validarProducto(nombreProducto, precioProducto) {
 
 agregarAlCarrito(nombreProducto, precioProducto) {
     if (!this.validarProducto(nombreProducto, precioProducto)) {
-        console.error("Intento de agregar producto inválido al carrito.");
+        notis.mostrarNotificacion("Datos inválidos al intentar agregar un producto.", "error");
         return;
     }
 
@@ -34,33 +34,44 @@ agregarAlCarrito(nombreProducto, precioProducto) {
 
     if (productoExistente) {
         productoExistente.cantidad += 1;
+        notis.mostrarNotificacion(`Cantidad aumentada para el producto: ${nombreProducto}`, "info");
     } else {
         this.productos.push({ nombre: nombreProducto, precio: Number(precioProducto), cantidad: 1 });
+        this.notis.mostrarNotificacion(`Producto agregado: ${nombreProducto}`, "success");
     }
 
     this.guardarCarrito();
     this.actualizarCarrito();
 }
 
- eliminarDelCarrito(nombreProducto) {
-    this.productos = this.productos.filter((producto) => producto.nombre !== nombreProducto);
+eliminarDelCarrito(nombreProducto) {
+    const productoExistente = this.productos.find((producto) => producto.nombre === nombreProducto);
+
+    if (productoExistente) {
+        this.productos = this.productos.filter((producto) => producto.nombre !== nombreProducto);
+        this.notis.mostrarNotificacion(`Producto eliminado: ${nombreProducto}`, "error");
+    }
+
     this.guardarCarrito();
     this.actualizarCarrito();
 }
 
- incrementarCantidad(nombreProducto) {
+
+incrementarCantidad(nombreProducto) {
     const producto = this.productos.find((producto) => producto.nombre === nombreProducto);
     if (producto) {
         producto.cantidad += 1;
+        this.notis.mostrarNotificacion(`Cantidad incrementada para: ${nombreProducto}`, "info");
         this.guardarCarrito();
         this.actualizarCarrito();
     }
 }
 
- decrementarCantidad(nombreProducto) {
+decrementarCantidad(nombreProducto) {
     const producto = this.productos.find((producto) => producto.nombre === nombreProducto);
     if (producto && producto.cantidad > 1) {
         producto.cantidad -= 1;
+        this.notis.mostrarNotificacion(`Cantidad decrementada para: ${nombreProducto}`, "info");
     } else if (producto && producto.cantidad === 1) {
         this.eliminarDelCarrito(nombreProducto);
         return;
