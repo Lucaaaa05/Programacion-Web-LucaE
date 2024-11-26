@@ -4,6 +4,7 @@ class Carrito {
     constructor() {
         this.productos = JSON.parse(localStorage.getItem("carrito")) || [];
         this.notis = new Notificaciones(this);
+        this.formateador = new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" });
     }
 
 guardarCarrito() {
@@ -26,7 +27,7 @@ validarProducto(nombreProducto, precioProducto) {
 
 agregarAlCarrito(nombreProducto, precioProducto) {
     if (!this.validarProducto(nombreProducto, precioProducto)) {
-        notis.mostrarNotificacion("Datos inválidos al intentar agregar un producto.", "error");
+        this.notis.mostrarNotificacion("Datos inválidos al intentar agregar un producto.", "error");
         return;
     }
 
@@ -34,7 +35,7 @@ agregarAlCarrito(nombreProducto, precioProducto) {
 
     if (productoExistente) {
         productoExistente.cantidad += 1;
-        notis.mostrarNotificacion(`Cantidad aumentada para el producto: ${nombreProducto}`, "info");
+        this.notis.mostrarNotificacion(`Cantidad aumentada para el producto: ${nombreProducto}`, "info");
     } else {
         this.productos.push({ nombre: nombreProducto, precio: Number(precioProducto), cantidad: 1 });
         this.notis.mostrarNotificacion(`Producto agregado: ${nombreProducto}`, "success");
@@ -81,14 +82,16 @@ decrementarCantidad(nombreProducto) {
 }
 
  calcularTotal() {
-    return this.productos.reduce((total, producto) => {
+    const total = this.productos.reduce((total, producto) => {
         if (!producto.nombre || isNaN(producto.precio) || isNaN(producto.cantidad)) {
             console.error("Producto con datos inválidos en carrito: ", producto);
             return total;
         }
         return total + producto.precio * producto.cantidad;
-    }, 0).toFixed(2);
+    }, 0);
+    return this.formateador.format(total);
 }
+
 
  actualizarCarrito() {
     const carritoContainer = document.querySelector("#carrito .cart-items");
@@ -113,7 +116,7 @@ decrementarCantidad(nombreProducto) {
             productoDiv.classList.add("carrito-item");
             productoDiv.innerHTML = `
                 <span class="carrito-nombre">${producto.nombre}</span>
-                <span class="carrito-precio">$${producto.precio.toFixed(2)}</span>
+                <span class="carrito-precio">$${this.formateador.format(producto.precio)}</span>
                 <span class="carrito-cantidad">
                     <button class="btn-decrementar" data-nombre="${producto.nombre}">-</button>
                     ${producto.cantidad}
@@ -139,9 +142,9 @@ decrementarCantidad(nombreProducto) {
 
     const totalContainer = document.querySelector("#carrito-total span");
     if (totalContainer) {
-        const total = this.calcularTotal();
-        totalContainer.textContent = `$${total}`;
+        totalContainer.textContent = this.calcularTotal();
     }
+    
 }
 
 inicializarBotones() {
