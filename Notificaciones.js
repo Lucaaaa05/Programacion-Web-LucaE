@@ -6,6 +6,7 @@ class Notificaciones {
             throw new Error("Se requiere una instancia válida de Carrito.");
         }
         this.carrito = carrito;
+        this.formateador = new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" });
     }
 
 
