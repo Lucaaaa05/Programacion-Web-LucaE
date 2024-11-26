@@ -1,154 +1,63 @@
 import InventarioProducto from "./InventarioProducto.js";
 import Producto from "./Producto.js";
+import Carrito from "./Carrito.js";
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+const carrito = new Carrito();
 
-function guardarCarrito() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-}
+function mostrarResumenCompra() {
+    const detalleCompra = document.getElementById("detalleCompra");
+    detalleCompra.innerHTML = "";
 
-function agregarAlCarrito(nombreProducto, precioProducto) {
-    if (!nombreProducto || isNaN(precioProducto)) {
-        console.error("Intento de agregar producto inválido: ", { nombreProducto, precioProducto });
+    if (!Carrito || !Array.isArray(carrito.productos)) {
+        console.error("El carrito o su lista de productos no están definidos correctamente.");
+        detalleCompra.innerHTML = "<li class='list-group-item'>Error al cargar el carrito.</li>";
         return;
     }
 
-    const productoExistente = carrito.find((producto) => producto.nombre === nombreProducto);
-
-    if (productoExistente) {
-        productoExistente.cantidad += 1;
-    } else {
-        carrito.push({ nombre: nombreProducto, precio: Number(precioProducto), cantidad: 1 });
-    }
-
-    guardarCarrito();
-    actualizarCarrito();
-}
-
-function eliminarDelCarrito(nombreProducto) {
-    carrito = carrito.filter((producto) => producto.nombre !== nombreProducto);
-    guardarCarrito();
-    actualizarCarrito();
-}
-
-function incrementarCantidad(nombreProducto) {
-    const producto = carrito.find((producto) => producto.nombre === nombreProducto);
-    if (producto) {
-        producto.cantidad += 1;
-        guardarCarrito();
-        actualizarCarrito();
-    }
-}
-
-function decrementarCantidad(nombreProducto) {
-    const producto = carrito.find((producto) => producto.nombre === nombreProducto);
-    if (producto && producto.cantidad > 1) {
-        producto.cantidad -= 1;
-    } else if (producto && producto.cantidad === 1) {
-        eliminarDelCarrito(nombreProducto);
-        return;
-    }
-    guardarCarrito();
-    actualizarCarrito();
-}
-
-function calcularTotal() {
-    return carrito.reduce((total, producto) => {
-        if (!producto.nombre || isNaN(producto.precio) || isNaN(producto.cantidad)) {
-            console.error("Producto con datos inválidos en carrito: ", producto);
-            return total;
-        }
-        return total + producto.precio * producto.cantidad;
-    }, 0).toFixed(2);
-}
-
-function actualizarCarrito() {
-    const carritoContainer = document.querySelector("#carrito .cart-items");
-
-    if (!carritoContainer) {
-        console.error("Contenedor del carrito no encontrado.");
+    if (carrito.productos.length === 0) {
+        detalleCompra.innerHTML = "<li class='list-group-item'>El carrito está vacío.</li>";
         return;
     }
 
-    carritoContainer.innerHTML = "";
-
-    if (carrito.length === 0) {
-        carritoContainer.innerHTML = "<li>El carrito está vacío.</li>";
-    } else {
-        carrito.forEach((producto) => {
-            if (!producto.nombre || isNaN(producto.precio) || isNaN(producto.cantidad)) {
-                console.error("Producto inválido detectado en carrito: ", producto);
-                return;
-            }
-
-            const productoDiv = document.createElement("li");
-            productoDiv.classList.add("carrito-item");
-            productoDiv.innerHTML = `
-                <span class="carrito-nombre">${producto.nombre}</span>
-                <span class="carrito-precio">$${producto.precio.toFixed(2)}</span>
-                <span class="carrito-cantidad">
-                    <button class="btn-decrementar" data-nombre="${producto.nombre}">-</button>
-                    ${producto.cantidad}
-                    <button class="btn-incrementar" data-nombre="${producto.nombre}">+</button>
-                </span>
-                <button class="btn-eliminar" data-nombre="${producto.nombre}">Eliminar</button>
-            `;
-            carritoContainer.appendChild(productoDiv);
-        });
-    }
-
-    document.querySelectorAll(".btn-decrementar").forEach((button) => {
-        button.addEventListener("click", () => decrementarCantidad(button.dataset.nombre));
+    carrito.productos.forEach((producto) => {
+        const item = document.createElement("li");
+        item.classList.add("list-group-item");
+        item.innerHTML = `
+            ${producto.nombre} - ${producto.cantidad} x $${producto.precio.toFixed(2)} = $${(producto.precio * producto.cantidad).toFixed(2)}
+        `;
+        detalleCompra.appendChild(item);
     });
 
-    document.querySelectorAll(".btn-incrementar").forEach((button) => {
-        button.addEventListener("click", () => incrementarCantidad(button.dataset.nombre));
-    });
-
-    document.querySelectorAll(".btn-eliminar").forEach((button) => {
-        button.addEventListener("click", () => eliminarDelCarrito(button.dataset.nombre));
-    });
-
-    const totalContainer = document.querySelector("#carrito-total span");
-    if (totalContainer) {
-        const total = calcularTotal();
-        totalContainer.textContent = `$${total}`;
-    }
+    const totalItem = document.createElement("li");
+    totalItem.classList.add("list-group-item", "list-group-item-primary", "fw-bold");
+    totalItem.textContent = `Total: $${carrito.calcularTotal()}`;
+    detalleCompra.appendChild(totalItem);
 }
 
-function inicializarBotones() {
-    const botonesAgregar = document.querySelectorAll(".add-to-cart-button");
-
-    if (botonesAgregar.length === 0) {
-        console.warn("No se encontraron botones para agregar productos.");
-        return;
-    }
-
-    botonesAgregar.forEach((boton) => {
-        boton.addEventListener("click", () => {
-            const nombreProducto = boton.dataset.nombre;
-            const precioProducto = parseFloat(boton.dataset.precio);
-
-            if (!nombreProducto || isNaN(precioProducto)) {
-                console.error("Datos inválidos en el botón de agregar: ", {
-                    nombre: nombreProducto,
-                    precio: precioProducto,
-                });
-                return;
-            }
-            agregarAlCarrito(nombreProducto, precioProducto);
-        });
-    });
-}
-
-
-
-document.getElementById("cart").addEventListener("click", () => {
-    const carrito = document.getElementById("carrito");
-    carrito.style.display = carrito.style.display === "none" ? "block" : "none";
+const btnFinalizarCompra = document.querySelector(".checkout-button");
+btnFinalizarCompra.addEventListener("click", () => {
+    mostrarResumenCompra();
+    const modal = new bootstrap.Modal(document.getElementById("modalCompra"));
+    modal.show();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    actualizarCarrito();
-    inicializarBotones();
+    carrito.actualizarCarrito();
+    carrito.inicializarBotones();
+    const botonCarrito = document.getElementById("cart");
+    if (botonCarrito) {
+        botonCarrito.addEventListener("click", () => {
+            const carritoElemento = document.getElementById("carrito");
+            if (carritoElemento) {
+                carritoElemento.style.display = carritoElemento.style.display === "none" ? "block" : "none";
+            } else {
+                console.error("No se encontró el contenedor del carrito en el DOM.");
+            }
+        });
+    }
+});
+
+document.getElementById("cart").addEventListener("click", () => {
+    const carrito = document.getElementById("carrito");
+    carrito.classList.toggle("visible");
 });
