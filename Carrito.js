@@ -49,10 +49,10 @@ class Carrito {
         const productoExistente = this.productos.find((producto) => producto.nombre === nombreProducto);
 
         if (productoExistente) {
-            this.productos = this.productos.filter((producto) => producto.nombre !== nombreProducto);
+            const nuevoListado = this.productos.filter((producto) => producto.nombre !== nombreProducto);
             this.notis.mostrarNotificacion(`Producto eliminado: ${nombreProducto}`, "error");
+            this.productos = nuevoListado;
         }
-
         this.guardarCarrito();
         this.actualizarCarrito();
     }
@@ -149,6 +149,10 @@ class Carrito {
     async cargarProductosAPI() {
         try {
             const respuesta = await fetch("https://fakestoreapi.com/products");
+
+            if (!respuesta.ok) {
+                throw new Error('Error al obtener datos de la API');
+            }
             const productos = await respuesta.json();
 
             this.productos = productos.map((producto) => ({
@@ -171,7 +175,9 @@ class Carrito {
         contenedorProductos.innerHTML = "";
 
         this.productos.forEach((producto) => {
-            const productoHTML = `
+            const productoDiv = document.createElement('div');
+            productoDiv.classList.add('producto', 'card');
+            productoDiv.innerHTML = `
             <div class="producto card">
                 <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
                 <div class="card-body">
@@ -183,7 +189,7 @@ class Carrito {
                 </div>
             </div>
         `;
-            contenedorProductos.innerHTML += productoHTML;
+            contenedorProductos.appendChild(productoDiv);
         });
 
         this.inicializarBotones();
