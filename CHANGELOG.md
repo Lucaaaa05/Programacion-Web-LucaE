@@ -1,8 +1,10 @@
 # Registro de Cambios
 
+---
+
 ## Primer Parcial: Entregas 1 y 2
 
-### Entrega Actividad Obligatoria 1 - [Fecha: 2024-09-13]
+#### Entrega Actividad Obligatoria 1 - [Fecha: 2024-09-13]
 - **HTML:**
   - Se creó la maqueta **HTML** con etiquetas basicas.
   - Se añadieron imagenes para los productos así como para el logo de la página.
@@ -10,12 +12,14 @@
   
   - **Pull Request:** [#1](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/1)
 
-- **README.md:**
-  - Se creó el archivo **README.md**
+- **README:**
+  - Se creó el archivo **README**
 
   - **Pull Request:** [#1](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/1)
 
-### Entrega Actividad Obligatoria 2 - [Fecha: 2024-10-02]
+---
+
+#### Entrega Actividad Obligatoria 2 - [Fecha: 2024-10-02]
 - **CSS:**
   - Se agregaron los estilos básicos a los elementos principales de la página.
   - Se agregaron media-querys para un diseño mas responisvo.
@@ -27,7 +31,9 @@
 
   - **Pull Request:** [#2](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/2)
 
-### Primer Parcial - [Fecha: 2024-10-20]
+---
+
+#### Primer Parcial - [Fecha: 2024-10-20]
 - **Bootstrap:**
   - Se agregó un **Carrousel** con imagenes nuevas.
   - Se agregó un **IFrame** con la localización de la empresa.
@@ -39,9 +45,11 @@
 
   - **Pull Request:** [#3](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/3)
 
+---
+
 ## Segundo Parcial: Entregas 3 y 4
 
-### Entrega Actividad Obligatoria 3 - [Fecha: 2024-10-22]
+#### Entrega Actividad Obligatoria 3 - [Fecha: 2024-10-22]
 - **JavaScript:**
   - Se crearon 2 nuevas clases **"Producto"** y **"InventarioProducto"**.
   - Se agregaron métodos en la clase **"InventarioProducto"**. 
@@ -58,8 +66,9 @@
 
   - **Pull Request:** [#5](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/5)
 
+---
 
-### Entrega Actividad Obligatoria 4 - [Fecha: 2024-11-19]
+#### Entrega Actividad Obligatoria 4 - [Fecha: 2024-11-19]
 - **JavaScript:**
   - Se creó la clase **"Carrito"**, sus métodos son:
     - guardarCarrito: Lo guarda en el localStorage
@@ -89,7 +98,9 @@
 
   - **Pull Request:** [#8](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/8)
 
-### Segundo Parcial - [Fecha: 2024-11-28]
+---
+
+#### Segundo Parcial - [Fecha: 2024-11-28]
 - **JavaScript:**
   - **Carrito:** 
     - Se le dió formato al documento.
@@ -124,3 +135,28 @@
   - se creó una template para las PRs.
 
   - **Pull Request:** [#11](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/11 )
+
+---
+
+### Examen Final - [Fecha: 2024-14-12]
+  - **README:**
+    - Se mejoró proporcionando más claridad.
+    - Se agregó link a "AEXO.md".
+
+    - **Pull Request:** [#13](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/13)
+
+  - **ANEXO:**
+    - Se creó el archivo.
+    - Se agregaron links a archivos (FrameworkReact.md, FrameworkExpress.md).
+
+    - **Pull Request:** [#13](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/13)
+
+  - **FrameworkReact:**
+    - Se creó el archivo.
+
+    - **Pull Request:** [#13](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/13)
+
+  - **FrameworkExpress:**
+    - Se creó el archivo.
+    
+    - **Pull Request:** [#13](https://github.com/Lucaaaa05/Programacion-Web-LucaE/pull/13)
