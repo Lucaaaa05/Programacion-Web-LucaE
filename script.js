@@ -6,7 +6,8 @@ const notis = new Notificaciones(carrito);
 
 document.addEventListener("DOMContentLoaded", () => {
     carrito.actualizarCarrito();
-    carrito.inicializarBotones();
+    carrito.cargarProductosAPI();
+
     const botonCarrito = document.getElementById("cart");
     if (botonCarrito) {
         botonCarrito.addEventListener("click", () => {
